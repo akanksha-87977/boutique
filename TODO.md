@@ -1,0 +1,3 @@
+- [x] Update SignIn.jsx to authenticate against backend instead of fake signin
+- [x] Add loading state and error handling to SignIn component
+- [ ] Test signin functionality with backend
