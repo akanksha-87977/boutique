@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 const SignUp = ({ onSignUp, onSwitchToSignIn }) => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -75,9 +77,9 @@ const SignUp = ({ onSignUp, onSwitchToSignIn }) => {
         };
         
         console.log('📝 Submitting signup:', signupData);
-        console.log('🔗 Calling: http://localhost:5000/api/auth/signup');
+        console.log('🔗 Calling:', `${API_BASE_URL}/api/auth/signup`);
         
-        const response = await fetch('http://localhost:5000/api/auth/signup', {
+        const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -119,7 +121,7 @@ const SignUp = ({ onSignUp, onSwitchToSignIn }) => {
         console.error('❌ Fetch error:', error);
         console.error('❌ Error message:', error.message);
         console.error('❌ Stack:', error.stack);
-        setErrors({ submit: 'Connection error: ' + error.message + '. Make sure backend is running on http://localhost:5000' });
+        setErrors({ submit: 'Connection error: ' + error.message + '. Please try again.' });
       } finally {
         setLoading(false);
       }
